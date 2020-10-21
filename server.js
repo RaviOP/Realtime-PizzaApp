@@ -12,10 +12,22 @@ const publicPath = path.join(__dirname, 'public')
 app.set('view engine', 'ejs')
 app.set('views', viewsPath)
 app.use(express.static(publicPath))
-// app.use(expressLayout)
+app.use(expressLayout)
 
 app.get('/', (req, res) => {
     res.render('home')
+})
+
+app.get('/cart', (req, res) => {
+    res.render('customer/cart')
+})
+
+app.get('/login', (req, res) => {
+    res.render('auth/login')
+})
+
+app.get('/register', (req, res) => {
+    res.render('auth/register')
 })
 
 app.listen(PORT, () => {
