@@ -6,7 +6,9 @@ const InitRoute = require('./routes/web')
 const connection = require('./db/mongoose')
 const session = require('express-session')
 const flash = require('express-flash')
+const { urlencoded } = require('express')
 const MongoDbStore = require('connect-mongo')(session)
+const passport = require('passport')
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -27,7 +29,15 @@ app.use(session({
     }
 }))
 
+//Passport Config
+const passportInit = require('./app/config/passport')
+passportInit(passport)
+app.use(passport.initialize())
+app.use(passport.session())
+
+
 app.use(flash())
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 const viewsPath = path.join(__dirname, 'resources/views')
@@ -36,6 +46,7 @@ const publicPath = path.join(__dirname, 'public')
 //Global Middleware
 app.use((req, res, next) => {
     res.locals.session = req.session
+    res.locals.user = req.user
     next()
 })
 
