@@ -62,6 +62,10 @@ app.use(expressLayout)
 
 app.use(InitRoute)
 
+app.get('*', (req, res) => {
+    res.status(404).send('<h1>Page Not Found</h1>')
+})
+
 const server = app.listen(PORT, () => {
     console.log(`Server is Up and Running On Port ${PORT}`)
 })
