@@ -3,7 +3,7 @@ const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 
 const init = (passport) => {
-    passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+    passport.use(new LocalStrategy(/*to set custom username field default is username*/{ usernameField: 'email' }, async (email, password, done) => {
         //Login Logic
         const user = await User.findOne({ email: email })
         if (!user) {
