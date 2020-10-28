@@ -27025,6 +27025,7 @@ if (order) {
 var adminAreaPath = window.location.pathname;
 
 if (adminAreaPath.includes('admin')) {
+  Object(_admin__WEBPACK_IMPORTED_MODULE_3__["initAdmin"])(socket);
   socket.emit('join', 'adminRoom');
 }
 
@@ -27042,7 +27043,6 @@ socket.on('orderUpdated', function (data) {
     layout: 'topRight'
   }).show();
 });
-Object(_admin__WEBPACK_IMPORTED_MODULE_3__["initAdmin"])(socket);
 
 /***/ }),
 

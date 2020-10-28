@@ -85,6 +85,7 @@ if (order) {
 let adminAreaPath = window.location.pathname
 
 if (adminAreaPath.includes('admin')) {
+    initAdmin(socket)
     socket.emit('join', 'adminRoom')
 }
 
@@ -101,7 +102,3 @@ socket.on('orderUpdated', (data) => {
         layout: 'topRight'
     }).show()
 })
-
-
-
-initAdmin(socket)
